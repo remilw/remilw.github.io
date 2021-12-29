@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="remi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="类(Class)类是一类对象的模板。类包含对象的属性和方法。 1234567891011121314151617181920public class Person&amp;#123;    String name;    int age;        void learn()    &amp;#123;      System.out.println(&quot;learn sth&quot;);    &amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类和对象">
+<meta property="og:url" content="http://example.com/2021/12/27/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="黑米blog">
+<meta property="og:description" content="类(Class)类是一类对象的模板。类包含对象的属性和方法。 1234567891011121314151617181920public class Person&amp;#123;    String name;    int age;        void learn()    &amp;#123;      System.out.println(&quot;learn sth&quot;);    &amp;#1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/java/exemple.png">
+<meta property="article:published_time" content="2021-12-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-29T19:17:09.905Z">
+<meta property="article:author" content="remi">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/java/exemple.png">
+  
+  
+  <title>类和对象 - 黑米blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RemiBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="类和对象">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-28 00:00" pubdate>
+        2021年12月28日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">类和对象</h1>
+            
+            <div class="markdown-body">
+              <h2 id="类-Class"><a href="#类-Class" class="headerlink" title="类(Class)"></a>类(Class)</h2><p>类是一类对象的模板。<br>类包含对象的属性和方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Person<br>&#123;<br>    String name;<br>    int age;<br>    <br>    void <span class="hljs-function"><span class="hljs-title">learn</span></span>()<br>    &#123;<br>      System.out.println(<span class="hljs-string">&quot;learn sth&quot;</span>);<br>    &#125;<br>    <br>    void <span class="hljs-function"><span class="hljs-title">eat</span></span>()<br>    &#123;<br>      System.out.println(<span class="hljs-string">&quot;eat sth&quot;</span>);<br>    &#125;<br>    <br>    void <span class="hljs-function"><span class="hljs-title">sleep</span></span>()<br>    &#123;<br>      System.out.println(<span class="hljs-string">&quot;zzzzzzz&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="对象-Object"><a href="#对象-Object" class="headerlink" title="对象(Object)"></a>对象(Object)</h2><p>对象是一个类的实例，有该对象特有的属性和方法。</p>
+<p><img src="/img/java/exemple.png" srcset="/img/loading.gif" lazyload></p>
+<p>如上图，人（Person）是一个类，而小明是人这个类的一个对象，<br>小红是人这个类的另一个对象。每个对象有各自的名字和各自的年龄。<br>生成对象的这个动作，我们称为实例化。</p>
+<h2 id="类的声明与初始化"><a href="#类的声明与初始化" class="headerlink" title="类的声明与初始化"></a>类的声明与初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">Person xiaoMin, xiaoHong; //对象的声明 <br>xiaoMin = new Person(); //对象的实例化<br></code></pre></td></tr></table></figure>
+<ul>
+<li>在对象声明的时候，这个内存的值一般是null。</li> 
+<li> 在对象实例化的时候，才会对对象进行进行内存分配</li>
+<li> <span class="label label-info">new</span>是创建对象的关键字</li>
+</ul>
+
+
+
+<h2 id="访问控制修饰符"><a href="#访问控制修饰符" class="headerlink" title="访问控制修饰符"></a>访问控制修饰符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Person<br>&#123;<br>    private String name;<br>    private int age;<br>    <br>    public String <span class="hljs-function"><span class="hljs-title">getName</span></span>()<br>    &#123;<br>      <span class="hljs-built_in">return</span> this.name;<br>    &#125;<br>    public void setName(String name)<br>    &#123;<br>      this.name = name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<table class="table table-striped table-hover">
+<tr><th></th><th>其他包的类</th><th>子类</th><th>同包其他类</th><th>内部类</th></tr>
+<tr><th>public(+)</th><th><em style="color: green;">✔</th><th><em style="color: green;">✔</th><th><em style="color: green;">✔</th><th><em style="color: green;">✔</th></tr>
+<tr><th>protected(#)</th><th><em style="color: red;">✘</th><th><em style="color: green;">✔</th><th><em style="color: green;">✔</th><th><em style="color: green;">✔</th></tr>
+<tr><th>defalut()</th><th><em style="color: red;">✘</th><th><em style="color: red;">✘</th><th><em style="color: green;">✔</th><th><em style="color: green;">✔</th></tr>
+<tr><th>private(-)</th><th><em style="color: red;">✘</th><th><em style="color: red;">✘</th><th><em style="color: red;">✘</th><th><em style="color: green;">✔</th></tr>
+</table>
+
+<ul>
+<li>包，可以理解为同目录下的不同文件夹</li>
+<li><span class="label label-info">this.</span>为了调用本类的属性,以便于区分方法内的类属性和传入参数</li>
+<li><span class="label label-info">public</span>一般用于修饰方法，如上用于getName和setName</li>
+<li><span class="label label-info">protected</span>一般是修饰父类的属性，以便于子类能够直接使用父类属性</li>
+<li><span class="label label-info">default</span>如果不对属性添加修饰符，系统则会给他一个默认修饰符。</li>
+<li><span class="label label-info">private</span>用来保护数据和隐藏类，因为被private修饰的只能被所属类访问。</li>
+</ul>
+
+<p class="note note-danger">要求：类的所有属性必须被private修饰。（个人觉得父类的方法可以用protected修饰）</p>
+
+<h2 id="Getter和Setter"><a href="#Getter和Setter" class="headerlink" title="Getter和Setter"></a>Getter和Setter</h2><p>当一个另一类无法访问此类的私有属性。我们可以用getter来获取此属性的值，用setter来修改属性的值。</p>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Person<br>&#123;<br>    private String name;<br>    private int age;<br>    <br>    //----------------Construire------------------<br>    public Person(String name)<br>    &#123;<br>      this(name,18);//调用下面那个构造方法，age默认为18岁<br>    &#125;<br>    <br>    public Person(String name, int age)<br>    &#123;<br>      this.name = name;<br>      this.age = age;<br>    &#125;<br>    <br>    public Person(int age)<br>    &#123;<br>      this(<span class="hljs-string">&quot;???&quot;</span>,age);//调用上面那个构造方法，无名氏<br>    &#125;<br>    <br>    //-----------------GETTER-------------<br>    public String <span class="hljs-function"><span class="hljs-title">getName</span></span>()<br>    &#123;<br>      <span class="hljs-built_in">return</span> this.name;<br>    &#125;<br>    //-----------------SETTER-------------<br>    public void setName(String name)<br>    &#123;<br>      this.name = name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class TestPerson &#123;<br>    public static void main(String[] args) &#123;<br>        Person xiaoHong = new Person(<span class="hljs-string">&quot;xiao hong&quot;</span>); //调用上面第一个构造方法<br>        Person xiaoMing = new Person(<span class="hljs-string">&quot;xiao ming&quot;</span> ,18);//调用上面第二个构造方法<br><br>        System.out.println(xiaoHong);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+
+<li>构造方法没有返回值。</li> 
+<li>一般方法名字开头必须小写，但是构造方法例外，因为构造方法的名字<b>必须</b>是类名。</li>
+<li>构造方法可以有多个(参数数量或参数类型不同)，每次<span class="label label-info">new</span>一个对象调用的构造方法是根据传入参数的数量来决定的。</li>
+<li>如果一个类没有写构造方法，那么他会调用他顶级父类个<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/util/Objects.html">Object</a>的构造方法。</li>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/util/Objects.html">Object</a>是所有类的父类。(这是个Object类不是上面说的对象)</li>
+</ul>
+
+<p>当我们使用<span class="label label-info">new</span>的时候的jvm的操作顺序。</p>
+<ul>
+<ol>为该对象租用内存地址。</ol>
+<ol>为对象中的属性赋值，如果没有指定值就给一个<span class="label label-success">默认值</span>。</ol>
+<ol>调用对应的构造方法。</ol>
+</ul>
+
+<p><span class="label label-success">默认值</span>整型默认为<span class="label label-info">0</span>，浮点型默认为<span class="label label-info">0.0</span>，布尔类型默认为<span class="label label-info">false</span>，所有对象的默认类型是<span class="label label-info">null</span>,构造方法是jvm赋予默认值之后才被调用。</p>
+
+
+<h2 id="主方法"><a href="#主方法" class="headerlink" title="主方法"></a>主方法</h2><p>主方法（<span class="label label-info">main</span>）是程序启动的入口，如上面的TestPerson的main是我们运行TestPerson的入口。而且有主方法的类<b>必须</b>被public修饰。</p>
+<h2 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a>toString()方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Person<br>&#123;<br>   //照上<br>  <br>    @Override<br>    public String <span class="hljs-function"><span class="hljs-title">toString</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> <span class="hljs-string">&quot;i&#x27;m &quot;</span> + this.name + <span class="hljs-string">&quot; and &quot;</span> + this.age + <span class="hljs-string">&quot; years old&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果类没有写toString()方法，则系统会调用Objectt的toString()方法，此时在控制台会显示一串十六进制的地址。<br>而这个地址指向的就是我们的toString()方法。所以如果我们写了此方法，控制台就会返回对应的信息。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>java TestPerson <br>Person<span class="hljs-variable">@14dad5dc</span><br><br><span class="hljs-variable">$ </span>javac TestPerson.java<br><span class="hljs-variable">$ </span>java TestPerson <br>i<span class="hljs-string">&#x27;m xiao hong and 18 years old</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一个非Test类一般包含他的属性和方法，如构造方法用于创建对象，Getter和Setter用于访问和修改属性，toString()用于输出信息。而Test类一般不包含属性，只有一个主函数来启动我们的程序。</p>
+<p>如果发现错误请留言告知，万分感谢。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"el":true,"appId":"pBl6IDdE6E3KcUCwWvJmUplX-MdYXbMMI","appKey":"uMBU6KY1KoVXtAr3IEsAHleq","path":"window.location.pathname","placeholder":"...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":"ture","recordIP":true,"serverURLs":"https://pbl6idde.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/remilw" target="_blank" rel="nofollow noopener">&copy;<script>document.write(new Date().getFullYear());</script><span>Remi</span></a> | <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Powered by Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
