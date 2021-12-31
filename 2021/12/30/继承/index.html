@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="remi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="继承继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。 我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。 1234567891011121314151617181920212223242526272829303132333435public class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="继承">
+<meta property="og:url" content="http://example.com/2021/12/30/%E7%BB%A7%E6%89%BF/index.html">
+<meta property="og:site_name" content="黑米blog">
+<meta property="og:description" content="继承继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。 我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。 1234567891011121314151617181920212223242526272829303132333435public class">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-31T09:32:38.332Z">
+<meta property="article:author" content="remi">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="总结">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>继承 - 黑米blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RemiBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="继承">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-31 00:00" pubdate>
+        2021年12月31日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">继承</h1>
+            
+            <div class="markdown-body">
+              <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加<br>自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。</p>
+<p>我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Vehicle &#123;<br>    private String id;<br>    private String destination;<br>    private int passenger;<br><br>    public Vehicle(String id, String destination, int passenger)<br>    &#123;<br>        this.id = id;<br>        this.setDestination(destination);<br>        this.setPassenger(passenger);<br>    &#125;<br><br>    public void way()//如何去目的地<br>    &#123;<br>        System.out.printf(<span class="hljs-string">&quot;tele-transmit&quot;</span>);<br>    &#125;<br><br><br>    //----------------------GETTER/SETTER------------------------<br>    public String <span class="hljs-function"><span class="hljs-title">getDestination</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> destination;<br>    &#125;<br><br>    public void setDestination(String destination) &#123;<br>        this.destination = destination;<br>    &#125;<br><br>    public int <span class="hljs-function"><span class="hljs-title">getPassenger</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> passenger;<br>    &#125;<br><br>    public void setPassenger(int passenger) &#123;<br>        this.passenger = passenger;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p></p>
+<p>拿子类飞机为例，他肯定是要有父类的所有属性，并且我们可以根据飞机的特运输特性，给
+他添加一个新的属性：飞行高度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Plane extends Vehicle&#123;<br>    private int altitude;<br><br>    public Plane(String id, String destination, int passenger,int altitude) &#123;<br>        super(id, destination, passenger);<br>        this.altitude = altitude;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li> <span class="label label-info">extends</span>是继承的关键字。</li>
+<li> Java 不允许多继承。一个子类只有一个父类，正如每个人只有一个die。</li>
+<li> <span class="label label-info">super</span>是调用父类属性或方法的关键字。</li>
+<li> 如果在子类要调用父类构造方法，super()一定要放子类构造方法的第一行。</li>
+<li> 子类拥有父类所有非private的方法和属性</li>
+</ul>
+<p></p>
+### 重定义方法/重写方法
+本身Vehicle有如何去到目的地的方法way()，但是飞机应该是飞去目的地而不是传送过去，
+所以我们需要在子类重新定义这个方法。
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Plane extends Vehicle&#123;<br>    private int altitude;<br><br>    public Plane(String id, String destination, int passenger,int altitude) &#123;<br>        super(id, destination, passenger);<br>        this.altitude = altitude;<br>    &#125;<br>    <br>    @Override<br>    public void <span class="hljs-function"><span class="hljs-title">way</span></span>()<br>    &#123;<br>        System.out.println(<span class="hljs-string">&quot;id: &quot;</span> + super.getId() + <span class="hljs-string">&quot; fly fly fly!&quot;</span>);<br>        //或者我们可以飞到一半再传送<br>        //super.way();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Test&#123;<br>    public static void main(String[] args) &#123;<br>        Vehicle v = new Vehicle(<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;beiking&quot;</span>,1);<br>        Plane f = new Plane(<span class="hljs-string">&quot;2&quot;</span>,<span class="hljs-string">&quot;shanghai&quot;</span>,200,20000);<br><br>        v.way();//id: 1 tele-transmit<br>        f.way();//id: 2 fly fly fly!<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li> <span class="label label-info">@Override</span>是重写的关键字。</li>
+<li> 重写的方法必须拥有相同的函数名，返回值，对应的参数类型和个数。</li>
+<li> 重写和重载<span class="label label-info">@Overload</span>不同，重载是给类多加了一个新方法，因为方法的参数数量和类型不同，而重写是同一个方法内容不同。</li>
+</ul>
+<p></p>
+### 构造方法及调用顺序
+如果子类没有自己的构造方法，那么他会调用父类的构造方法。因为默认调用父类的无参构造方法。
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Plane extends Vehicle&#123;<br><br>    //如果没有构造方法，系统添加如下构造方法<br>    public <span class="hljs-function"><span class="hljs-title">Plane</span></span>() &#123;<br>        super();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+所以当我们新建一个子类plane，他会首先调用Plane的构造方法，然后因为Plane（）的第一行是super()，所以会调用对应的父类Vehicle的构造方法。
+而执行顺行是先执行Vehicle的构造方法，再执行Plane的构造方法。原理如同递归函数的调用与执行。
+<p></p>
+### 超类 Object
+Object是所有类的父类（所以称其为超类）。原因在于所有没有extends关键字的类(如Vehicle)，都默认继承了Object类。所以即使子类(Plane)没有直接继承Object类，但是间接继承了Object类的属性和方法。Object类主要方法如下：
+
+<ul>
+<li> <span class="label label-info">public String toString()</span>以字符串的形式返回对象信息。</li>
+<li> <span class="label label-info">public boolean equals(Object obj)</span>如果不重写此方法，那么系统会拿两个对象的地址进行比较。</li>
+<li> <span class="label label-info">public int hashCode() </span>如果重写了equals()方法，此方法也要重写，以免在用hash表的时候出现hashcode相同而出现问题(后面会有文章解释，为什么不用重写hashCode()，hash表也不会出问题)。</li>
+</ul>
+<p></p>
+### final
+被<span class="label label-info">final</span>修饰的方法不能被重写。
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Vehicle &#123;<br><br>    public final void way()//如何去目的地<br>    &#123;<br>        System.out.printf(<span class="hljs-string">&quot;tele-transmit&quot;</span>);<br>    &#125;<br>&#125;<br><br>public class Plane extends Vehicle&#123;<br>    //无法重写<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<ol><a target="_blank" rel="noopener" href="https://programmation-orientee-objet.pages.ensimag.fr/poo/resources/fiches/03-Heritage/">学校资料</a></ol>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/27/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
+                        <span class="hidden-mobile">类和对象</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"el":true,"appId":"pBl6IDdE6E3KcUCwWvJmUplX-MdYXbMMI","appKey":"uMBU6KY1KoVXtAr3IEsAHleq","path":"window.location.pathname","placeholder":"...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":"ture","recordIP":true,"serverURLs":"https://pbl6idde.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/remilw" target="_blank" rel="nofollow noopener">&copy;<script>document.write(new Date().getFullYear());</script><span>Remi</span></a> | <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Powered by Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
