@@ -26,7 +26,7 @@
 <meta property="og:description" content="继承继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。 我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。 1234567891011121314151617181920212223242526272829303132333435public class">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-31T09:32:38.332Z">
+<meta property="article:modified_time" content="2022-01-02T14:09:22.573Z">
 <meta property="article:author" content="remi">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="总结">
@@ -200,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      2.9k 字
     </span>
   
 
@@ -288,7 +288,9 @@ Object是所有类的父类（所以称其为超类）。原因在于所有没�
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Vehicle &#123;<br><br>    public final void way()//如何去目的地<br>    &#123;<br>        System.out.printf(<span class="hljs-string">&quot;tele-transmit&quot;</span>);<br>    &#125;<br>&#125;<br><br>public class Plane extends Vehicle&#123;<br>    //无法重写<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<p>如果发现错误请留言告知，万分感谢。</p>
+## 参考资料
+<ul>
 <ol><a target="_blank" rel="noopener" href="https://programmation-orientee-objet.pages.ensimag.fr/poo/resources/fiches/03-Heritage/">学校资料</a></ol>
 </ul>
 

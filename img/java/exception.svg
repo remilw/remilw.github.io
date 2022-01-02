@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="309px" preserveAspectRatio="none" style="width:777px;height:309px;background:#F8F8F8;" version="1.1" viewBox="0 0 777 309" width="777px" zoomAndPan="magnify"><defs/><g><!--MD5=[b8cfd8c4119a3b0a7a46bfc5fc780f85]
+class Error--><rect codeLine="4" fill="#F2DEDE" height="29.1998" id="Error" style="stroke:#666666;stroke-width:1.5;" width="42" x="183" y="96"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="36" x="186" y="116.7918">Error</text><!--MD5=[c1a3ba06f308b79ba28082c5614ea4c9]
+class VirtualMachineError--><rect codeLine="5" fill="#F2DEDE" height="29.1998" id="VirtualMachineError" style="stroke:#666666;stroke-width:1.5;" width="151" x="80.5" y="185"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="145" x="83.5" y="205.7918">VirtualMachineError</text><!--MD5=[c248d6fecbcbcefc4dd12e3af8d89fdf]
+class OutOfMemoryError--><rect codeLine="6" fill="#F2DEDE" height="29.1998" id="OutOfMemoryError" style="stroke:#666666;stroke-width:1.5;" width="148" x="7" y="274"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="142" x="10" y="294.7918">OutOfMemoryError</text><!--MD5=[5c6c7d52e42032554528404b62c1d271]
+class RuntimeException--><rect codeLine="7" fill="#F2DEDE" height="29.1998" id="RuntimeException" style="stroke:#666666;stroke-width:1.5;" width="135" x="278.5" y="185"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="129" x="281.5" y="205.7918">RuntimeException</text><!--MD5=[717cb20722fa6853ca2a70f19b345126]
+class IllegalArgumentException--><rect codeLine="8" fill="#F2DEDE" height="29.1998" id="IllegalArgumentException" style="stroke:#666666;stroke-width:1.5;" width="186" x="190" y="274"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="180" x="193" y="294.7918">IllegalArgumentException</text><!--MD5=[c592f3252b7084a8ff6d06757de85840]
+class ArithmeticException--><rect codeLine="9" fill="#F2DEDE" height="29.1998" id="ArithmeticException" style="stroke:#666666;stroke-width:1.5;" width="151" x="411.5" y="274"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="145" x="414.5" y="294.7918">ArithmeticException</text><!--MD5=[1171ddf7f6a3c83b7d2312c80850c25d]
+class Throwable--><rect fill="#F8F8F8" height="29.1998" id="Throwable" style="stroke:#666666;stroke-width:1.5;" width="81" x="210.5" y="7"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="75" x="213.5" y="27.7918">Throwable</text><!--MD5=[8db60afef7a3447bbe27c5ed187fdac2]
+class Exception--><rect fill="#F8F8F8" height="29.1998" id="Exception" style="stroke:#666666;stroke-width:1.5;" width="76" x="308" y="96"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="70" x="311" y="116.7918">Exception</text><!--MD5=[1ece49953b1ba24a21a2daf00b0b04f7]
+class IOException--><rect fill="#F8F8F8" height="29.1998" id="IOException" style="stroke:#666666;stroke-width:1.5;" width="93" x="574.5" y="185"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="87" x="577.5" y="205.7918">IOException</text><!--MD5=[32cffa8fe315238a8dce9a3f94346e1a]
+class FileNotFoundException--><rect fill="#F8F8F8" height="29.1998" id="FileNotFoundException" style="stroke:#666666;stroke-width:1.5;" width="173" x="597.5" y="274"/><text fill="#444444" font-family="Lato" font-size="16" lengthAdjust="spacing" textLength="167" x="600.5" y="294.7918">FileNotFoundException</text><!--MD5=[b74aaf1dd121c467b9fb078f9c5d9a8f]
+reverse link Throwable to Error--><path codeLine="11" d="M233.837,54.0002 C226.2732,68.3231 217.7628,84.4384 211.7726,95.7816 " fill="none" id="Throwable-backto-Error" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="227.7095,50.6131,243.2389,36.1965,240.0893,57.1508,227.7095,50.6131" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[45d08a1bd82a2bb108aa54dbe06cf0be]
+reverse link Error to VirtualMachineError--><path codeLine="12" d="M186.4718,143.0002 C178.7471,157.3231 170.0557,173.4384 163.938,184.7816 " fill="none" id="Error-backto-VirtualMachineError" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="180.4189,139.4768,196.0738,125.1965,192.741,146.1225,180.4189,139.4768" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[dcc952ee450f724cc1a5e53fad4afcc3]
+reverse link VirtualMachineError to OutOfMemoryError--><path codeLine="13" d="M130.6539,229.5774 C118.0985,244.4764 103.5051,261.7939 93.4031,273.7816 " fill="none" id="VirtualMachineError-backto-OutOfMemoryError" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="125.3744,224.9795,143.6153,214.1965,136.0801,234.0011,125.3744,224.9795" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[2460a353b68f8388d801976b817ecbdd]
+reverse link Throwable to Exception--><path codeLine="14" d="M281.3209,49.9059 C297.6091,65.1654 317.012,83.3428 330.2894,95.7816 " fill="none" id="Throwable-backto-Exception" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="276.4971,54.9787,266.6873,36.1965,286.0687,44.7618,276.4971,54.9787" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[3c8f6ad3ba12231f364f8b4b81630d92]
+reverse link Exception to RuntimeException--><path codeLine="15" d="M346,145.4578 C346,159.139 346,174.0829 346,184.7816 " fill="none" id="Exception-backto-RuntimeException" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="339.0001,145.1966,346,125.1965,353.0001,145.1965,339.0001,145.1966" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[81c923f96fe09b4f2449488b41c12df7]
+reverse link Exception to IOException--><path codeLine="16" d="M403.3179,129.0501 C454.5533,145.6318 528.6189,169.6021 575.7819,184.8658 " fill="none" id="Exception-backto-IOException" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="401.1105,135.6933,384.2376,122.8751,405.4213,122.3735,401.1105,135.6933" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[97ee574d02ec8b7d213754e645fbf925]
+reverse link IOException to FileNotFoundException--><path codeLine="17" d="M642.9735,230.5419 C653.3627,245.2188 665.2782,262.0517 673.5814,273.7816 " fill="none" id="IOException-backto-FileNotFoundException" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="637.245,234.565,631.4032,214.1965,648.6719,226.4763,637.245,234.565" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[d411c891a0edbbe2d51f00df97e49d77]
+reverse link RuntimeException to IllegalArgumentException--><path codeLine="18" d="M324.0265,230.5419 C313.6373,245.2188 301.7218,262.0517 293.4186,273.7816 " fill="none" id="RuntimeException-backto-IllegalArgumentException" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="318.3281,226.4763,335.5968,214.1965,329.755,234.565,318.3281,226.4763" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[5b54c975a10294a6efed64aa5feaa663]
+reverse link RuntimeException to ArithmeticException--><path codeLine="19" d="M386.5502,225.0955 C411.5615,240.8828 442.7504,260.5694 463.6821,273.7816 " fill="none" id="RuntimeException-backto-ArithmeticException" style="stroke:#444444;stroke-width:1.0;"/><polygon fill="none" points="382.4595,230.7914,369.2833,214.1965,389.9323,218.9525,382.4595,230.7914" style="stroke:#444444;stroke-width:1.0;"/><!--MD5=[a96c75d8d2eadcdee41265905eb9a131]
+@startuml
+!include ensiblue/plantuml/ensiuml.iuml
+hide empty members
+
+class Error #f2dede
+class VirtualMachineError #f2dede
+class OutOfMemoryError #f2dede
+class RuntimeException #f2dede
+class IllegalArgumentException #f2dede
+class ArithmeticException #f2dede
+
+Throwable <|- - Error
+Error <|- - VirtualMachineError
+VirtualMachineError <|- - OutOfMemoryError
+Throwable <|- - Exception
+Exception <|- - RuntimeException
+Exception <|- - IOException
+IOException <|- - FileNotFoundException
+RuntimeException <|- - IllegalArgumentException
+RuntimeException <|- - ArithmeticException
+@enduml
+
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BackgroundColor f8f8f8
+skinparam shadowing false
+skinparam ArrowColor 444444
+skinparam ArrowFontName Lato
+skinparam ArrowFontSize 10
+skinparam NoteBackgroundColor f8f8f8
+skinparam NoteBorderColor 666666
+skinparam NoteFontName Lato
+skinparam NoteFontSize 14
+skinparam class {
+	BackgroundColor f8f8f8
+	BorderColor 666666
+	FontName Lato
+	FontSize 16
+	FontColor 444444
+}
+skinparam classattribute {
+	FontName Lato
+	FontSize 16
+	FontColor 444444
+}
+skinparam classmethod {
+	FontName Lato
+	FontSize 16
+	FontColor 444444
+}
+hide empty members
+
+class Error #f2dede
+class VirtualMachineError #f2dede
+class OutOfMemoryError #f2dede
+class RuntimeException #f2dede
+class IllegalArgumentException #f2dede
+class ArithmeticException #f2dede
+
+Throwable <|- - Error
+Error <|- - VirtualMachineError
+VirtualMachineError <|- - OutOfMemoryError
+Throwable <|- - Exception
+Exception <|- - RuntimeException
+Exception <|- - IOException
+IOException <|- - FileNotFoundException
+RuntimeException <|- - IllegalArgumentException
+RuntimeException <|- - ArithmeticException
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 17:25:22 UTC 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF8
+Language: en
+Country: US
+--></g></svg>

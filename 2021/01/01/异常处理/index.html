@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="remi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="异常处理Java异常有两大类，分别是失控异常和可控异常。失控异常一般指的是错误(java.lang.Error)和运行时异常(java.lang.RuntimeException)。可控异常一般指的是检查性异常java.lang.Execption。在别的文档是直接把错误归一类，异常归一类，然后再讨论运行时异常和检查性异常。  Throwable类Throwable是所有异常的父类，他拥有的主要方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常处理">
+<meta property="og:url" content="http://example.com/2021/01/01/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="黑米blog">
+<meta property="og:description" content="异常处理Java异常有两大类，分别是失控异常和可控异常。失控异常一般指的是错误(java.lang.Error)和运行时异常(java.lang.RuntimeException)。可控异常一般指的是检查性异常java.lang.Execption。在别的文档是直接把错误归一类，异常归一类，然后再讨论运行时异常和检查性异常。  Throwable类Throwable是所有异常的父类，他拥有的主要方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/java/exception.svg">
+<meta property="article:published_time" content="2021-01-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-02T14:08:47.873Z">
+<meta property="article:author" content="remi">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/java/exception.svg">
+  
+  
+  <title>异常处理 - 黑米blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RemiBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="异常处理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-02 00:00" pubdate>
+        2021年1月2日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      44 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">异常处理</h1>
+            
+            <div class="markdown-body">
+              <h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>Java异常有两大类，分别是失控异常和可控异常。失控异常一般指的是错误(<span class="label label-info">java.lang.Error</span>)<br>和运行时异常(<span class="label label-info">java.lang.RuntimeException</span>)。<br>可控异常一般指的是检查性异常<span class="label label-info">java.lang.Execption</span>。在别的文档是直接把错误归一类，异常归一类，然后再讨论运行时异常和检查性异常。</p>
+<p><img src="/img/java/exception.svg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Throwable类"><a href="#Throwable类" class="headerlink" title="Throwable类"></a>Throwable类</h3><p>Throwable是所有异常的父类，他拥有的主要方法如下：</p>
+<ul>
+<li><span class="label label-info">public String getMessage()</span>
+在Throwable类中已经初始化，返回异常的详细信息。</li>
+<li><span class="label label-info">    public Throwable getCause()</span>
+返回异常的原因。</li>
+<li><span class="label label-info">    public String toString()</span>
+返回异常尖端描述</li>
+<li><span class="label label-info">    public void printStackTrace()</span>
+将此throwable和他的回溯输出到standard error</li>
+<li><span class="label label-info">    public StackTraceElement [] getStackTrace()</span>
+返回一个包含堆栈层次的数组。下标为0的元素代表栈顶，最后一个元素代表方法调用堆栈的栈底。</li>
+</ul>
+
+<h3 id="捕获或抛出自己的异常类"><a href="#捕获或抛出自己的异常类" class="headerlink" title="捕获或抛出自己的异常类"></a>捕获或抛出自己的异常类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs bash">//同一文件中，只准有一个public类<br>class PassengerIncorrectException extends Exception &#123;<br>    public PassengerIncorrectException(String message) &#123;<br>        super(message);<br>    &#125;<br>&#125;<br>public class Vehicle &#123;<br>    private String id;<br>    private String destination;<br>    private int passenger;<br><br>    public Vehicle(String id, String destination, int passenger)<br>    &#123;<br>        this.id = id;<br>        this.setDestination(destination);<br>        this.setPassenger(passenger);<br>    &#125;<br><br>    public void <span class="hljs-function"><span class="hljs-title">way</span></span>()<br>    &#123;<br>        System.out.println(<span class="hljs-string">&quot;id: &quot;</span> +this.id + <span class="hljs-string">&quot; tele-transmit&quot;</span>);<br>    &#125;<br><br><br>    //----------------------GETTER/SETTER------------------------<br>    public String <span class="hljs-function"><span class="hljs-title">getDestination</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> destination;<br>    &#125;<br><br>    public void setDestination(String destination) &#123;<br>        this.destination = destination;<br>    &#125;<br><br>    public int <span class="hljs-function"><span class="hljs-title">getPassenger</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> passenger;<br>    &#125;<br><br><br>    //捕获异常<br>    public void setPassenger(int passenger) &#123;<br>        try &#123;<br>            <span class="hljs-keyword">if</span> (passenger &lt; 0) &#123;<br>                throw new PassengerIncorrectException(<span class="hljs-string">&quot;passenger &lt; 0 !!!!&quot;</span>);<br>            &#125;<br>        &#125;catch (PassengerIncorrectException e)//必须精确声明异常类<br>        &#123;<br>            System.out.println(e);<br>            e.printStackTrace();<br>            System.exit(1); //让程序退出执行<br>        &#125; finally &#123;<br>            System.out.printf(<span class="hljs-string">&quot;setPassenger finlay&quot;</span>);<br>        &#125;<br>    <br><br>        this.passenger = passenger;<br>    &#125;<br>  <br>    //或者抛出异常<br>     public void setPassenger(int passenger) throws PassengerIncorrectException &#123;<br>            <span class="hljs-keyword">if</span> (passenger &lt; 0) &#123;<br>                throw new PassengerIncorrectException(<span class="hljs-string">&quot;passenger &lt; 0 !!!!&quot;</span>);<br>        this.passenger = passenger;<br>    &#125;<br><br><br>    public String <span class="hljs-function"><span class="hljs-title">getId</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> id;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>在同一文件中，只准有一个public类</li> 
+<li>异常<b>必须</b>被抛出<span class="label label-info">throws</span><b>或者</b>被捕获</li>
+<li>必须要用<span class="label label-info">try...catch...</span>来捕获抛出的异常</li>
+<li>在catch必须精确的声明的异常类，不能用Exception敷衍，如果同时有多个不同异常，可以用多个catch分别捕获</li>
+<li>无论是否发生异常，<span class="label label-info">finally</span>代码块中的代码总会被执行。</li>
+</ul>
+
+
+<h3 id="异常执行顺序"><a href="#异常执行顺序" class="headerlink" title="异常执行顺序"></a>异常执行顺序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><code class="hljs bash">class NbEcaillesIncorrectException extends Exception &#123;<br>    public <span class="hljs-function"><span class="hljs-title">NbEcaillesIncorrectException</span></span>() &#123;<br>        super();<br>    &#125;<br>&#125;<br><br>class NbMaxPangolinException extends Exception &#123;<br>    public <span class="hljs-function"><span class="hljs-title">NbMaxPangolinException</span></span>() &#123;<br>        super(<span class="hljs-string">&quot;Le nombre maximal de pangolins est atteint...&quot;</span>);<br>    &#125;<br>&#125;<br><br>class NommageException extends Exception &#123;<br>    public <span class="hljs-function"><span class="hljs-title">NommageException</span></span>() &#123;<br>        super();<br>    &#125;<br>&#125;<br>class CanardException extends Exception &#123;<br>    public <span class="hljs-function"><span class="hljs-title">CanardException</span></span>() &#123;<br>        super();<br>    &#125;<br>&#125;<br><br>class PangolinException extends Exception &#123;<br>    public <span class="hljs-function"><span class="hljs-title">PangolinException</span></span>() &#123;<br>        super();<br>    &#125;<br>&#125;<br><br>public class TestC &#123;<br>    private static final boolean PANGOLIN_EXCEPTION = <span class="hljs-literal">false</span>;<br>    private static final boolean NOMMAGE_EXCEPTION = <span class="hljs-literal">false</span>;<br>    private static final boolean CANARD_EXCEPTION = <span class="hljs-literal">false</span>;<br>    private static final boolean NBECAILLESINCORRECT_EXCEPTION = <span class="hljs-literal">false</span>;<br>    private static final boolean NBMAXPANGOLIN_EXCEPTION = <span class="hljs-literal">true</span>;<br>    private static final boolean ARITHMETIC_EXCEPTION = <span class="hljs-literal">false</span>;<br>    private static final boolean ILLEGAL_ARGUMENT_EXCEPTION = <span class="hljs-literal">false</span>;<br><br>    public static void m1() throws CanardException &#123;<br>        try &#123;<br>            System.out.println(<span class="hljs-string">&quot;Début de m1()&quot;</span>);<br>            m2();<br>            System.out.println(<span class="hljs-string">&quot;Fin de m1()&quot;</span>);<br>        &#125; catch (PangolinException e) &#123;<br>            System.out.println(<span class="hljs-string">&quot;Exception Pangolin (de m1()).&quot;</span>);<br>        &#125;<br>    &#125;<br><br>    public static void m2() throws PangolinException, CanardException &#123;<br>        try &#123;<br>            System.out.println(<span class="hljs-string">&quot;Début de m2()&quot;</span>);<br>            m3();<br>            System.out.println(<span class="hljs-string">&quot;Fin de m2()&quot;</span>);<br>        &#125; catch (NbMaxPangolinException e) &#123;<br>            System.out.println(<span class="hljs-string">&quot;Exception nombre max pangolin (de m2()).&quot;</span>);<br>            throw new IllegalArgumentException();<br>        &#125; finally &#123;<br>            System.out.println(<span class="hljs-string">&quot;Finally de m2()&quot;</span>);<br>        &#125;<br>        System.out.println(<span class="hljs-string">&quot;Fin de m2() après le try/catch/finally&quot;</span>);<br>    &#125;<br><br>    public static void m3() throws PangolinException, CanardException,NbMaxPangolinException &#123;<br>        try &#123;<br>            System.out.println(<span class="hljs-string">&quot;Début de m3()&quot;</span>);<br>            <span class="hljs-keyword">if</span> (PANGOLIN_EXCEPTION)<br>                throw new PangolinException();<br>            <span class="hljs-keyword">if</span> (NOMMAGE_EXCEPTION)<br>                throw new NommageException();<br>            <span class="hljs-keyword">if</span> (CANARD_EXCEPTION)<br>                throw new CanardException();<br>            <span class="hljs-keyword">if</span> (NBECAILLESINCORRECT_EXCEPTION)<br>                throw new NbEcaillesIncorrectException();<br>            <span class="hljs-keyword">if</span> (NBMAXPANGOLIN_EXCEPTION)<br>                throw new NbMaxPangolinException();<br>            <span class="hljs-keyword">if</span> (ARITHMETIC_EXCEPTION)<br>                throw new ArithmeticException();<br>            <span class="hljs-keyword">if</span> (ILLEGAL_ARGUMENT_EXCEPTION)<br>                throw new IllegalArgumentException();<br>            System.out.println(<span class="hljs-string">&quot;Fin de m3()&quot;</span>);<br>        &#125; catch (NommageException | NbEcaillesIncorrectException e) &#123;<br>            System.out.println(<span class="hljs-string">&quot;Exception Nommage (de m3()).&quot;</span>);<br>        &#125;<br>    &#125;<br><br>    public static void main(String[] args) throws CanardException &#123;<br>        System.out.println(<span class="hljs-string">&quot;Début de la méthode principale&quot;</span>);<br>        m1();<br>        System.out.println(<span class="hljs-string">&quot;Fin de la méthode principale&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面是老师给的例子，可以通过修改常量的真值来测试。</p>
+<ul>
+<li>抛出的异常会一直回溯，直到被捕捉。异常被处理之后，程序继续运行。</li>
+<li>如果抛出的异常最终<b>没有</b>被捕捉，那么程序会被中止。</li>
+<li>如果try，catch内<b>没有</b>return语句，那么执行顺序是 try{} catch(){}finally{} return;</li>
+<li>如果try，catch内<b>有</b>return语句，在return之前，如果finally存在的话，都会先执行finally语句，最后再return。</li>
+<li>如果finally中有return语句，那么程序就在finally被返回,所以finally中的return是一定会被return的。</li>
+<li>因为在执行finally之前，reutrn语句已经开始执行，所以在finally内修改返回值是无用的(如果finally没return)。</li>
+</ul>
+
+<p>如果发现错误请留言告知，万分感谢。</p>
+
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<ol><a target="_blank" rel="noopener" href="https://programmation-orientee-objet.pages.ensimag.fr/poo/resources/fiches/04-Exceptions/">学校资料</a></ol>
+<ol><a target="_blank" rel="noopener" href="https://blog.csdn.net/xx326664162/article/details/50266995">薛瑄的博客</a></ol>
+<ol><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">菜鸟教程</a></ol>
+</ul>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/27/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">类和对象</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"el":true,"appId":"pBl6IDdE6E3KcUCwWvJmUplX-MdYXbMMI","appKey":"uMBU6KY1KoVXtAr3IEsAHleq","path":"window.location.pathname","placeholder":"...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":"ture","recordIP":true,"serverURLs":"https://pbl6idde.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/remilw" target="_blank" rel="nofollow noopener">&copy;<script>document.write(new Date().getFullYear());</script><span>Remi</span></a> | <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Powered by Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
