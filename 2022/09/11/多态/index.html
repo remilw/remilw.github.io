@@ -18,22 +18,22 @@
   <meta name="author" content="remi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="继承继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。 我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。 1234567891011121314151617181920212223242526272829303132333435public class">
+    <meta name="description" content="多态多态是指对不同的子类调用相同的方法，输出的结果不同。意思是程序在编译的时候并不知道要调用哪个类的方法，必须等到程序运行的时候才能决定。 对象多态类型对象的多态类型一共有两种：静态类型，动态类型。静态类型是对类而言，在程序运行的过程为中，静态类型的类会根据引用对象的改变而改变。动态类型对对象而言，一但一个对象被new方法创建了，那这个对象就是内存中的有效的动态类型。 检验动态类型的方法12345">
 <meta property="og:type" content="article">
-<meta property="og:title" content="继承">
-<meta property="og:url" content="http://example.com/2021/12/30/%E7%BB%A7%E6%89%BF/index.html">
+<meta property="og:title" content="多态">
+<meta property="og:url" content="http://example.com/2022/09/11/%E5%A4%9A%E6%80%81/index.html">
 <meta property="og:site_name" content="黑米blog">
-<meta property="og:description" content="继承继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。 我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。 1234567891011121314151617181920212223242526272829303132333435public class">
+<meta property="og:description" content="多态多态是指对不同的子类调用相同的方法，输出的结果不同。意思是程序在编译的时候并不知道要调用哪个类的方法，必须等到程序运行的时候才能决定。 对象多态类型对象的多态类型一共有两种：静态类型，动态类型。静态类型是对类而言，在程序运行的过程为中，静态类型的类会根据引用对象的改变而改变。动态类型对对象而言，一但一个对象被new方法创建了，那这个对象就是内存中的有效的动态类型。 检验动态类型的方法12345">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-13T16:46:23.053Z">
+<meta property="article:published_time" content="2022-09-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-13T17:00:16.623Z">
 <meta property="article:author" content="remi">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>继承 - 黑米blog</title>
+  <title>多态 - 黑米blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -179,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="继承">
+            <span class="h2" id="subtitle" title="多态">
               
             </span>
 
@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-31 00:00" pubdate>
-        2021年12月31日 凌晨
+      <time datetime="2022-09-12 00:00" pubdate>
+        2022年9月12日 凌晨
       </time>
     </span>
   
@@ -200,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.9k 字
+      2.2k 字
     </span>
   
 
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24 分钟
+      19 分钟
     </span>
   
 
@@ -246,62 +246,33 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">继承</h1>
+            <h1 style="display: none">多态</h1>
             
             <div class="markdown-body">
-              <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承可以让子类拥有父类的所有非private的方法和属性，并且子类可以在父类的基础上添加<br>自己特有的方法和属性。可以简单的理解为，继承让父类变得更加特殊，可以描述的范围更窄。</p>
-<p>我们假设交通工具是一个父类，那么我们可以创建一些子类如：飞机，汽车，轮船。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Vehicle &#123;<br>    private String id;<br>    private String destination;<br>    private int passenger;<br><br>    public Vehicle(String id, String destination, int passenger)<br>    &#123;<br>        this.id = id;<br>        this.setDestination(destination);<br>        this.setPassenger(passenger);<br>    &#125;<br><br>    public void way()//如何去目的地<br>    &#123;<br>        System.out.printf(<span class="hljs-string">&quot;tele-transmit&quot;</span>);<br>    &#125;<br><br><br>    //----------------------GETTER/SETTER------------------------<br>    public String <span class="hljs-function"><span class="hljs-title">getDestination</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> destination;<br>    &#125;<br><br>    public void setDestination(String destination) &#123;<br>        this.destination = destination;<br>    &#125;<br><br>    public int <span class="hljs-function"><span class="hljs-title">getPassenger</span></span>() &#123;<br>        <span class="hljs-built_in">return</span> passenger;<br>    &#125;<br><br>    public void setPassenger(int passenger) &#123;<br>        this.passenger = passenger;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p></p>
-<p>拿子类飞机为例，他肯定是要有父类的所有属性，并且我们可以根据飞机的特运输特性，给
-他添加一个新的属性：飞行高度。</p>
+              <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态是指对不同的子类调用相同的方法，输出的结果不同。意思是程序在编译的时候并不知道要调用哪个类的方法，必须等到程序运行的时候才能决定。</p>
+<h3 id="对象多态类型"><a href="#对象多态类型" class="headerlink" title="对象多态类型"></a>对象多态类型</h3><p>对象的多态类型一共有两种：静态类型，动态类型。静态类型是对类而言，在程序运行的过程为中，静态类型的类会根据引用对象的改变而改变。动态类型对对象而言，一但一个对象被new方法创建了，那这个对象就是内存中的有效的动态类型。</p>
+<h4 id="检验动态类型的方法"><a href="#检验动态类型的方法" class="headerlink" title="检验动态类型的方法"></a>检验动态类型的方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Test &#123;<br>    public void exempleDeMecanismesTestantLeTypeDynamique(Object o) &#123;<br>      // o是对动态类型对象的引用<br>      // o可以是类A，类B<br>      // 或者是C的实例，或者D的实例<br><br>      //第一种方法 getClass<br>      System.out.println(o.getClass().getName() ) ;<br>      <span class="hljs-keyword">if</span> (o.getClass() == A.class) &#123;<br>        // 只有当o的动态类型是A的时候才会进入<span class="hljs-keyword">if</span><br>        ...<br>      &#125;<br><br>      // 第二种方法 instanceof<br>      <span class="hljs-keyword">if</span> (o instanceof A) &#123;<br>        //o是动态类型A或者A的子类<br>        ...<br>      &#125;<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Plane extends Vehicle&#123;<br>    private int altitude;<br><br>    public Plane(String id, String destination, int passenger,int altitude) &#123;<br>        super(id, destination, passenger);<br>        this.altitude = altitude;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class A &#123;<br>    public String show(D obj) &#123;<br>        <span class="hljs-built_in">return</span> (<span class="hljs-string">&quot;A and D&quot;</span>);<br>    &#125;<br><br>    public String show(A obj) &#123;<br>        <span class="hljs-built_in">return</span> (<span class="hljs-string">&quot;A and A&quot;</span>);<br>    &#125; <br><br>&#125;<br><br>public class B extends A&#123;<br>    public String show(B obj)&#123;<br>        <span class="hljs-built_in">return</span> (<span class="hljs-string">&quot;B and B&quot;</span>);<br>    &#125;<br>    <br>    public String show(A obj)&#123;<br>        <span class="hljs-built_in">return</span> (<span class="hljs-string">&quot;B and A&quot;</span>);<br>    &#125; <br>&#125;<br><br>public class C extends B&#123;<br><br>&#125;<br><br>public class D extends B&#123;<br><br>&#125;<br><br>public class Test &#123;<br>    public static void main(String[] args) &#123;<br>        A a1 = new A();<br>        A a2 = new B();<br>        B b = new B();<br>        C c = new C();<br>        D d = new D();<br>        <br>        System.out.println(<span class="hljs-string">&quot;1--&quot;</span> + a1.show(b));<br>        System.out.println(<span class="hljs-string">&quot;2--&quot;</span> + a1.show(c));<br>        System.out.println(<span class="hljs-string">&quot;3--&quot;</span> + a1.show(d));<br>        System.out.println(<span class="hljs-string">&quot;4--&quot;</span> + a2.show(b));<br>        System.out.println(<span class="hljs-string">&quot;5--&quot;</span> + a2.show(c));<br>        System.out.println(<span class="hljs-string">&quot;6--&quot;</span> + a2.show(d));<br>        System.out.println(<span class="hljs-string">&quot;7--&quot;</span> + b.show(b));<br>        System.out.println(<span class="hljs-string">&quot;8--&quot;</span> + b.show(c));<br>        System.out.println(<span class="hljs-string">&quot;9--&quot;</span> + b.show(d));      <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ul>
-<li> <span class="label label-info">extends</span>是继承的关键字。</li>
-<li> Java 不允许多继承。一个子类只有一个父类，正如每个人只有一个die。</li>
-<li> <span class="label label-info">super</span>是调用父类属性或方法的关键字。</li>
-<li> 如果在子类要调用父类构造方法，super()一定要放子类构造方法的第一行。</li>
-<li> 子类拥有父类所有非private的方法和属性</li>
-</ul>
-<p></p>
+<p>上每A，B，C类都有一个show方法。如果我们执行上面代码，会发现输出的结果会由于创建的类不同而不同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">1--A and A<br>2--A and A<br>3--A and D<br>4--B and A<br>5--B and A<br>6--A and D<br>7--B and B<br>8--B and B<br>9--A and D<br></code></pre></td></tr></table></figure>
+<p>但是第四行为什么输出的不是“B AND B”呢。因为a2调用show方法的对象的静态类型是A，其次静态类型的参数是B。在A类中最匹配的方法是 <span class="label label-info">public String show(A obj)</span>。但是如果调用了A类的该方法，那么输出应该是”A and A”。 所以另一个原因是，我们可以在B类中找到一个更加具体的方法。更具体的方法的定义：<span class="label label-info">function(type1_1 p1, …, type1_n pn)比function(type2_1 p2, …, type2_n pn)更加具体，当且仅当对有所有的i，1$\leqslant$i$\leqslant$n,type1_i是type2_i的子类。</span></p>
+<p>在上面这种静态类型和动态类型不一致的情况下，编译器会对静态类型的类里面的方法进行以下检索：</p>
+<ol>
+<li>检查在静态类型的类中是否有该函数</li> 
+<li>检测是否有多个签名匹配(子类是否重写该方法)</li>
+<li>返回最具体最匹配的方法</li>
+</ol>
 
-
-<h3 id="重定义方法-重写方法"><a href="#重定义方法-重写方法" class="headerlink" title="重定义方法/重写方法"></a>重定义方法/重写方法</h3><p>本身Vehicle有如何去到目的地的方法way()，但是飞机应该是飞去目的地而不是传送过去，<br>所以我们需要在子类重新定义这个方法。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Plane extends Vehicle&#123;<br>    private int altitude;<br><br>    public Plane(String id, String destination, int passenger,int altitude) &#123;<br>        super(id, destination, passenger);<br>        this.altitude = altitude;<br>    &#125;<br>    <br>    @Override<br>    public void <span class="hljs-function"><span class="hljs-title">way</span></span>()<br>    &#123;<br>        System.out.println(<span class="hljs-string">&quot;id: &quot;</span> + super.getId() + <span class="hljs-string">&quot; fly fly fly!&quot;</span>);<br>        //或者我们可以飞到一半再传送<br>        //super.way();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Test&#123;<br>    public static void main(String[] args) &#123;<br>        Vehicle v = new Vehicle(<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;beiking&quot;</span>,1);<br>        Plane f = new Plane(<span class="hljs-string">&quot;2&quot;</span>,<span class="hljs-string">&quot;shanghai&quot;</span>,200,20000);<br><br>        v.way();//id: 1 tele-transmit<br>        f.way();//id: 2 fly fly fly!<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li> <span class="label label-info">@Override</span>是重写的关键字。</li>
-<li> 重写的方法必须拥有相同的函数名，返回值，对应的参数类型和个数。</li>
-<li> 重写和重载<span class="label label-info">@Overload</span>不同，重载是给类多加了一个新方法，因为方法的参数数量和类型不同，而重写是同一个方法内容不同。</li>
-</ul>
-<p></p>
-
-<h3 id="构造方法及调用顺序"><a href="#构造方法及调用顺序" class="headerlink" title="构造方法及调用顺序"></a>构造方法及调用顺序</h3><p>如果子类没有自己的构造方法，那么他会调用父类的构造方法。因为默认调用父类的无参构造方法。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Plane extends Vehicle&#123;<br><br>    //如果没有构造方法，系统添加如下构造方法<br>    public <span class="hljs-function"><span class="hljs-title">Plane</span></span>() &#123;<br>        super();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>所以当我们新建一个子类plane，他会首先调用Plane的构造方法，然后因为Plane（）的第一行是super()，所以会调用对应的父类Vehicle的构造方法。<br>而执行顺行是先执行Vehicle的构造方法，再执行Plane的构造方法。原理如同递归函数的调用与执行。</p>
-<p></p>
-### 超类 Object
-Object是所有类的父类（所以称其为超类）。原因在于所有没有extends关键字的类(如Vehicle)，都默认继承了Object类。所以即使子类(Plane)没有直接继承Object类，但是间接继承了Object类的属性和方法。Object类主要方法如下：
-
-<ul>
-<li> <span class="label label-info">public String toString()</span>以字符串的形式返回对象信息。</li>
-<li> <span class="label label-info">public boolean equals(Object obj)</span>如果不重写此方法，那么系统会拿两个对象的地址进行比较。</li>
-<li> <span class="label label-info">public int hashCode() </span>如果重写了equals()方法，此方法也要重写，以免在用hash表的时候出现hashcode相同而出现问题(后面会有文章解释，为什么不用重写hashCode()，hash表也不会出问题)。</li>
-</ul>
-<p></p>
-
-<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>被<span class="label label-info">final</span>修饰的方法不能被重写。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">public class Vehicle &#123;<br><br>    public final void way()//如何去目的地<br>    &#123;<br>        System.out.printf(<span class="hljs-string">&quot;tele-transmit&quot;</span>);<br>    &#125;<br>&#125;<br><br>public class Plane extends Vehicle&#123;<br>    //无法重写<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-
+<p>如果静态类型和动态类型一致，那么就会有以下的调用顺序：<span class="label label-info">this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)。</span></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>多态的最重要的条件是方法的重写，而<span class="label label-info">重写</span>又离不开<span class="label label-info">继承</span>。所以要实现多态必定有<span class="label label-info">继承</span>和<span class="label label-info">重写</span>这两个技术。</p>
 <p>如果发现错误请留言告知，万分感谢。</p>
 
+
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<ol><a target="_blank" rel="noopener" href="https://programmation-orientee-objet.pages.ensimag.fr/poo/resources/fiches/03-Heritage/">学校资料</a></ol>
+<ol><a target="_blank" rel="noopener" href="https://programmation-orientee-objet.pages.ensimag.fr/poo/resources/fiches/01-ClassesEtObjets/">学校资料</a></ol>
+<ol><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenssy/p/3372798.html">Java技术驿站</a></ol>
 </ul>
 
             </div>
@@ -341,18 +312,12 @@ Object是所有类的父类（所以称其为超类）。原因在于所有没�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/11/%E5%A4%9A%E6%80%81/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多态</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/27/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
-                        <span class="hidden-mobile">类和对象</span>
+                      <a href="/2021/12/30/%E7%BB%A7%E6%89%BF/">
+                        <span class="hidden-mobile">继承</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
